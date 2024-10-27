@@ -1,36 +1,37 @@
+name: CI
+
+# Run the workflow on any push or pull request to the main branch
 on:
   push:
-    branches:
-      - main  # or your relevant branches
+    branches: [main]
   pull_request:
-    branches:
-      - main  # or your relevant branches
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14, 18]  # Array for multiple Node.js versions
 
     steps:
+      # Check out the repository code
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}  
+          node-version: '16'
 
+      # Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Run tests
       - name: Run tests
         run: npm test
 
-      - name: Build
+      # Build the project (if necessary)
+      - name: Build project
         run: npm run build
 
-      - name: Deploy
-        run: npm run deploy 
 
