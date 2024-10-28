@@ -1,38 +1,31 @@
 name: CI
 
-# Run the workflow on any push or pull request to the main branch
 on:
   push:
-    branches: [main]
+    branches:
+      - new-feature-branch
   pull_request:
-    branches: [main]
+    branches:
+      - new-feature-branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the repository code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '18' # or any version you prefer
 
-      # Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Run tests
       - name: Run tests
-        run: npm test  # This will run `jest` without the watch option
-
-      # Build the project (if necessary)
-      - name: Build project
-        run: npm run build
+        run: npm test # This should call the test script in package.json
 
 
 
