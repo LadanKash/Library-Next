@@ -1,6 +1,5 @@
-// __tests__/example.test.js
 import { render, screen } from '@testing-library/react';
-import MyComponent from '../path/to/MyComponent'; // Update with the actual path to your component
+import MyComponent from '../path/to/MyComponent'; // Ensure this path is correct
 
 test('renders learn react link', () => {
   render(<MyComponent />);
