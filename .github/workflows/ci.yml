@@ -3,29 +3,29 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - new-feature-branch
+  pull_request:
+    branches:
+      - new-feature-branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the code
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  
+          node-version: '18' # or any version you prefer
 
       - name: Install dependencies
         run: npm install
 
       - name: Run tests
-        run: npm test
+        run: npm test # This should call the test script in package.json
 
-      - name: Build
-        run: npm run build
 
-      - name: Deploy
-        run: npm run deploy
+
